@@ -1,0 +1,14 @@
+.pe-none
+{
+  pointer-events: none!important;
+}
+
+.pe-all
+{
+  pointer-events: all!important;
+}
+
+.o-80
+{
+  opacity:0.8!important;
+}

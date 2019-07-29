@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>draco viewer</title>
+  <script src="lib/three.js"></script>
+  <script src="lib/DRACOLoader.js"></script>
+  <script src="lib/OrbitControls.js"></script>
+  <style>
+    html, body, #container, canvas, #parent, #overlay
+    {
+      width: 100%;
+      height:100%;
+      margin:0;
+      padding:0;
+      overflow:hidden;
+    }
+    #parent 
+    {
+      position: relative;
+    }
+    #parent > *
+    {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    #container
+    {
+      z-index: 0;
+    }
+    #overlay
+    {
+      z-index: 1;
+    }
+    #super-overlay
+    {
+      z-index:2;
+      background-color:rgba(255,255,255,0.95);
+    }
+
+    @keyframes jiggle {
+      0% {
+        transform: translateY(0)
+      }
+      30% {
+        transform: translateY(-0.3em)
+      }
+      100% {
+        transform: translateY(0)
+      }
+    }
+
+    #super-overlay h1
+    {
+      animation: jiggle 170ms ease-in-out;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="parent">
+    <div id="container"></div>
+
+    <div class="o-80 pe-none" id="overlay">
+      <div class="justify-content-center align-items-center d-flex w-100 h-100">
+        <div class="pe-all flex-grow-0 card position-relative">
+          <div class="card-body">
+            <div class="card-title">
+              <h3>
+                Preview DRACO
+              </h3>
+            </div>
+            <div class="input-group input-group-sm">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  URL
+                </span>
+              </div>
+              <input id="input-url" type="text" class="form-control form-control-sm">
+              <div class="input-group-append">
+                <div id="input-load" class="btn btn-primary">
+                  Load
+                </div>
+              </div>
+            </div>
+            <div id="alert-box" class="d-none mt-2 alert alert-danger">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-none o-80 pe-none w-100 h-100" id="super-overlay">
+      <div class="w-100 h-100 d-flex align-items-center justify-content-center">
+        <h1>
+          drop .drc file
+        </h1>
+      </div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
